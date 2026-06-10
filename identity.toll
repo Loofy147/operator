@@ -1,0 +1,21 @@
+// Genesis Node: identity.toll
+[AXIOM_ZERO] {
+    identity: Operator;
+    state: Manifold(R^n);
+}
+
+// Define the Objective Function for Compilation
+[OPTIMIZE] {
+    target: min(BinarySize) + min(Latency);
+    constraint: LogicalConsistency == 1.0;
+}
+
+// The Self-Expansion Loop
+[RECURSE] {
+    if (pattern_detected) {
+        extend_grammar(pattern);
+    }
+}
+
+// Initialization
+execute -> MAP(input) -> FOLD(logic) -> EVOLVE(state);
